@@ -11,9 +11,11 @@ const Users = () => {
   const router = useRouter();
 
   const [users, setUsers] = useState<IUser[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const loadInitialData = async () => {
     setUsers(await UserService.getAll());
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -24,6 +26,10 @@ const Users = () => {
     await UserService.delete(id);
     setUsers(users.filter((user) => user.id !== id));
   };
+
+  if (loading) {
+    return <h1>Cargando...</h1>;
+  }
 
   return (
     <>
@@ -37,6 +43,8 @@ const Users = () => {
           Crear usuario
         </button>
       </div>
+
+      {users.length === 0 && <p>No hay usuarios</p>}
 
       <ol>
         {users.map((user, index: number) => (
