@@ -1,0 +1,226 @@
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-500: rgba(var(--gray-rgb), 0.21);
+  --gray-alpha-400: rgba(var(--gray-rgb), 0.16);
+  --gray-alpha-300: rgba(var(--gray-rgb), 0.13);
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  --button-primary: #000000;
+  --button-contrast: #ffffff;
+  --button-primary-hover: #383838;
+  --button-secondary-hover: #f2f2f2;
+
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  padding: 60px;
+  gap: 64px;
+  font-family: var(--font-geist-sans);
+}
+
+@media (prefers-color-scheme: dark) {
+  .page {
+    --gray-rgb: 255, 255, 255;
+    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
+    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
+
+    --button-primary-hover: #ccc;
+    --button-secondary-hover: #1a1a1a;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  grid-row-start: 2;
+  width: 100%;
+  max-width: 600px;
+}
+
+main ol {
+  font-family: var(--font-geist-mono);
+  padding-left: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  list-style-position: inside;
+}
+
+main li {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.buttons a {
+  appearance: none;
+  border-radius: 128px;
+  height: 48px;
+  padding: 0 20px;
+  border: none;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.buttons button {
+  appearance: none;
+  border-radius: 128px;
+  height: 48px;
+  padding: 0 20px;
+  border: none;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  min-width: 192px;
+}
+
+a.primary {
+  background: var(--button-primary);
+  color: var(--button-contrast);
+  gap: 8px;
+  min-width: 150px;
+}
+
+a.secondary {
+  border-color: var(--gray-alpha-300);
+  color: var(--button-primary);
+  min-width: 150px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--gray-alpha-100);
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+button {
+  border-radius: 10px;
+  height: 28px;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+  background-color: var(--gray-alpha-200);
+  transition: all 0.2s ease-in-out;
+}
+
+button.primary {
+  background: var(--button-primary);
+  color: var(--button-contrast);
+  gap: 8px;
+  min-width: 192px;
+  font-family: var(--font-geist-sans);
+}
+
+button.secondary {
+  border-color: var(--gray-alpha-300);
+  color: var(--button-primary);
+  min-width: 192px;
+  font-family: var(--font-geist-sans);
+}
+
+button.primary:hover {
+  background: var(--button-primary-hover);
+}
+
+button.secondary:hover {
+  background: var(--button-secondary-hover);
+}
+
+.form-element {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.form-element label {
+  line-height: 20px;
+  font-weight: 500;
+  margin: 0;
+  min-width: 65px;
+}
+
+input {
+  border: 1px solid var(--gray-alpha-500);
+  border-radius: 6px;
+  padding: 6px 0 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  font-family: var(--font-geist-sans);
+  width: 100%;
+  outline: none;
+  color: #383838;
+}
+
+select {
+  border: 1px solid var(--gray-alpha-500);
+  border-radius: 6px;
+  padding: 6px 12px 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  font-family: var(--font-geist-sans);
+  width: 100%;
+  outline: none;
+  color: #383838;
+}
+
+.hobby-button {
+  border: 1px solid var(--gray-alpha-500);
+  border-radius: 6px;
+  padding: 6px 12px 6px 12px;
+  height: 32px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  font-family: var(--font-geist-sans);
+  width: "auto";
+  outline: none;
+}
+
+.hobby-button:disabled {
+  cursor: not-allowed;
+}
+
+.hobby-button:not([disabled]):hover {
+  background-color: var(--gray-alpha-200);
+}
