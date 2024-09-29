@@ -12,7 +12,7 @@ export class HobbyService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error creating hobby");
@@ -26,7 +26,7 @@ export class HobbyService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error getting all hobbies");
@@ -40,7 +40,7 @@ export class HobbyService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error getting hobby by id");
@@ -59,7 +59,7 @@ export class HobbyService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error updating hobby");
@@ -73,7 +73,7 @@ export class HobbyService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error deleting hobby");

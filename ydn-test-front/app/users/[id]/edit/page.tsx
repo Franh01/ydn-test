@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
+import DefaultErrorHandler from "@/app/common/components/DefaultErrorHandler";
 import { HobbyService } from "@/app/services/hobby.service";
 import { IHobby } from "@/app/interfaces/Hobby.interface";
 import { UserService } from "@/app/services/user.service";
@@ -17,18 +18,23 @@ const Edit = ({ params }: { params: { id: string } }) => {
   const [selectedHobbies, setSelectedHobbies] = useState<IHobby[]>([]);
   const [selectedHobbyId, setSelectedHobbyId] = useState<number | "">("");
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   const loadInitialData = async () => {
-    const userData = await UserService.getById(+id);
+    try {
+      const userData = await UserService.getById(+id);
 
-    setUserName(userData.name);
-    setSelectedHobbies(userData.hobbies);
-    setHobbies(
-      (await HobbyService.getAll()).filter(
-        (h) => !userData.hobbies.some((uH) => uH.id === h.id)
-      )
-    );
-    setLoading(false);
+      setUserName(userData.name);
+      setSelectedHobbies(userData.hobbies);
+      setHobbies(
+        (await HobbyService.getAll()).filter(
+          (h) => !userData.hobbies.some((uH) => uH.id === h.id)
+        )
+      );
+      setLoading(false);
+    } catch (error) {
+      setError((error as Error).message);
+    }
   };
 
   useEffect(() => {
@@ -64,6 +70,10 @@ const Edit = ({ params }: { params: { id: string } }) => {
     await UserService.update(parseInt(id), userName, selectedHobbies);
     router.back();
   };
+
+  if (error !== "") {
+    return <DefaultErrorHandler error={error} />;
+  }
 
   if (loading) {
     return <h1>Cargando...</h1>;

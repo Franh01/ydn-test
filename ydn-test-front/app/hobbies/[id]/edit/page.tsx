@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
+import DefaultErrorHandler from "@/app/common/components/DefaultErrorHandler";
 import { HobbyService } from "@/app/services/hobby.service";
 import { useRouter } from "next/navigation";
 
@@ -13,13 +14,18 @@ const Edit = ({ params }: { params: { id: string } }) => {
   const [hobbyName, setHobbyName] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   const loadInitialData = async () => {
-    const hobbyData = await HobbyService.getById(+id);
+    try {
+      const hobbyData = await HobbyService.getById(+id);
 
-    setHobbyName(hobbyData.name);
+      setHobbyName(hobbyData.name);
 
-    setLoading(false);
+      setLoading(false);
+    } catch (error) {
+      setError((error as Error).message);
+    }
   };
 
   useEffect(() => {
@@ -38,6 +44,10 @@ const Edit = ({ params }: { params: { id: string } }) => {
     await HobbyService.update(parseInt(id), hobbyName);
     router.back();
   };
+
+  if (error !== "") {
+    return <DefaultErrorHandler error={error} />;
+  }
 
   if (loading) {
     return <h1>Cargando...</h1>;

@@ -20,7 +20,7 @@ export class UserService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error creating user");
@@ -34,7 +34,7 @@ export class UserService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error getting all users");
@@ -48,7 +48,7 @@ export class UserService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error getting user by id");
@@ -68,7 +68,7 @@ export class UserService {
       return await this.addHobbies(id, hobbies);
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error updating user");
@@ -82,7 +82,7 @@ export class UserService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error deleting user");
@@ -101,7 +101,7 @@ export class UserService {
       return data;
     } catch (error) {
       if (error instanceof AxiosError) {
-        throw new Error(error.response?.data);
+        throw new Error(error.response?.data.message);
       }
 
       throw new Error("Error adding hobbies to user");

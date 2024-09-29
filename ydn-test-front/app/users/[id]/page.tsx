@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
+import DefaultErrorHandler from "@/app/common/components/DefaultErrorHandler";
 import { IUser } from "@/app/interfaces/User.interface";
 import { UserService } from "@/app/services/user.service";
 import { useRouter } from "next/navigation";
@@ -12,15 +13,24 @@ const UserDetail = ({ params }: { params: { id: string } }) => {
 
   const [userData, setUserData] = useState<IUser>({} as IUser);
   const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   const loadInitialData = async () => {
-    setUserData(await UserService.getById(+id));
-    setLoading(false);
+    try {
+      setUserData(await UserService.getById(+id));
+      setLoading(false);
+    } catch (error) {
+      setError((error as Error).message);
+    }
   };
 
   useEffect(() => {
     loadInitialData();
   }, []); //eslint-disable-line
+
+  if (error !== "") {
+    return <DefaultErrorHandler error={error} />;
+  }
 
   if (loading) {
     return <h1>Cargando...</h1>;
