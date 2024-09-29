@@ -224,3 +224,8 @@ select {
 .hobby-button:not([disabled]):hover {
   background-color: var(--gray-alpha-200);
 }
+
+.navigation-buttons {
+  display: flex;
+  gap: 20px;
+}
