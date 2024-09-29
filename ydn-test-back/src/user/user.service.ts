@@ -67,7 +67,7 @@ export class UserService {
   }
 
   async addHobbiesToUser(userId: number, hobbyIds: number[]) {
-    if (!Array.isArray(hobbyIds) || hobbyIds.length === 0) {
+    if (!Array.isArray(hobbyIds)) {
       throw new BadRequestException("No hobby IDs provided");
     }
 
@@ -83,6 +83,11 @@ export class UserService {
     const hobbies = await this.hobbyRepository.findBy({
       id: In(hobbyIds),
     });
+
+    if (hobbyIds.length === 0) {
+      user.hobbies = hobbies;
+      return this.userRepository.save(user);
+    }
 
     if (!hobbies.length) {
       throw new NotFoundException("No hobbies found with the given IDs");
