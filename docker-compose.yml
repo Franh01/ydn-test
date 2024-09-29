@@ -1,0 +1,28 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: ydn-psql
+    ports:
+      - "5432:5432"
+  backend:
+    environment:
+      DB_HOST: db
+      DB_NAME: ydn-psql
+      DB_USERNAME: postgres
+      DB_PASSWORD: 12345678
+      DB_PORT: 5432
+    build: ./ydn-test-back
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  frontend:
+    environment:
+      NEXT_PUBLIC_BACKEND_URL: "http://localhost:3000"
+    build: ./ydn-test-front
+    ports:
+      - "3001:3001"

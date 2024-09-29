@@ -24,7 +24,7 @@ const Edit = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     loadInitialData();
-  }, []);
+  }, []); //eslint-disable-line
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

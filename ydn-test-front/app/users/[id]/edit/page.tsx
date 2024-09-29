@@ -33,7 +33,7 @@ const Edit = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     loadInitialData();
-  }, []);
+  }, []); //eslint-disable-line
 
   const handleHobbySelect = () => {
     const selectedHobby = hobbies.find((h) => h.id === Number(selectedHobbyId));

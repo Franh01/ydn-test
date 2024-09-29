@@ -20,7 +20,7 @@ const HobbyDetail = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     loadInitialData();
-  }, []);
+  }, []); //eslint-disable-line
 
   if (loading) {
     return <h1>Cargando...</h1>;
